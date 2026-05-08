@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./api-tfg
+    container_name: football-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api-tfg/data:/app/data
+      - ./api-tfg/models:/app/models  # CORREGIDO: antes decía /app/app/models
+    restart: always
+
+  frontend:
+    build: ./frontend-tfg
+    container_name: football-web
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always

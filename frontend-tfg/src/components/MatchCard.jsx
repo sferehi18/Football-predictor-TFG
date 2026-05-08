@@ -1,0 +1,88 @@
+export default function MatchCard({ partido, isSelected, isLoading, onPredict }) {
+  // Intentamos capturar la fecha buscando los nombres más comunes en los CSV
+  const matchDate = partido.Date || partido.fecha || partido.date || partido.Fecha || "";
+
+  return (
+    <div className="card" style={{ 
+      border: isSelected ? '1px solid #00ff88' : '1px solid #333',
+      backgroundColor: isSelected ? '#111' : 'transparent',
+      transition: 'all 0.3s ease',
+      padding: '20px',
+      borderRadius: '8px',
+      boxSizing: 'border-box'
+    }}>
+      
+      {/* NUEVO: Fecha del partido en la parte superior */}
+      {matchDate && (
+        <div style={{ 
+          textAlign: 'center', 
+          color: '#666', 
+          fontSize: '0.75rem', 
+          marginBottom: '15px', 
+          letterSpacing: '1px',
+          textTransform: 'uppercase'
+        }}>
+          Fecha: {matchDate}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ textAlign: 'center', flex: 1 }}>
+          <div style={{ 
+            width: '40px', height: '40px', background: '#222', color: '#00ff88', 
+            borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
+            margin: '0 auto 10px auto', fontSize: '1.2rem', fontWeight: 'bold' 
+          }}>
+            {partido.Equipo_L[0]}
+          </div>
+          <div style={{ fontWeight: '600', fontSize: '0.9rem', color: '#fff' }}>{partido.Equipo_L}</div>
+        </div>
+        
+        <div style={{ color: '#555', fontWeight: 'bold', fontSize: '0.8rem', letterSpacing: '1px' }}>VS</div>
+        
+        <div style={{ textAlign: 'center', flex: 1 }}>
+          <div style={{ 
+            width: '40px', height: '40px', background: '#222', color: '#00ccff', 
+            borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', 
+            margin: '0 auto 10px auto', fontSize: '1.2rem', fontWeight: 'bold' 
+          }}>
+            {partido.Equipo_V[0]}
+          </div>
+          <div style={{ fontWeight: '600', fontSize: '0.9rem', color: '#fff' }}>{partido.Equipo_V}</div>
+        </div>
+      </div>
+
+      <div style={{ fontSize: '0.8rem', color: '#888', borderTop: '1px solid #222', paddingTop: '15px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+          <span style={{ color: '#aaa' }}>Local</span>
+          <span>{partido.manager_name_L} <span style={{ color: '#555' }}>|</span> {partido.formation_L}</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: '#aaa' }}>Visitante</span>
+          <span>{partido.manager_name_V} <span style={{ color: '#555' }}>|</span> {partido.formation_V}</span>
+        </div>
+      </div>
+
+      <button 
+        onClick={() => onPredict(partido)}
+        disabled={isLoading}
+        style={{ 
+          width: '100%', 
+          marginTop: '20px', 
+          padding: '12px', 
+          backgroundColor: isSelected ? '#00ff88' : 'transparent',
+          color: isSelected ? '#000' : '#00ff88',
+          border: '1px solid #00ff88',
+          borderRadius: '4px',
+          cursor: isLoading ? 'not-allowed' : 'pointer',
+          fontWeight: '600',
+          letterSpacing: '0.5px',
+          textTransform: 'uppercase',
+          fontSize: '0.8rem',
+          transition: 'all 0.2s ease'
+        }}>
+        {isLoading && isSelected ? 'Calculando...' : 'Ver Predicción'}
+      </button>
+    </div>
+  );
+}

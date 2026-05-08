@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  background: #0b0f0c;
+  color: #e6ffe6;
+  font-family: Inter, system-ui, Arial;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #050805;
+  border-right: 1px solid #0f2a17;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: #00ff88;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px;
+  color: #9be7b5;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.nav-links a.active {
+  background: #0f2a17;
+  color: #00ff88;
+}
+
+.nav-links a:hover {
+  background: #0c1f13;
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  border-bottom: 1px solid #0f2a17;
+  font-size: 18px;
+  color: #00ff88;
+}
+
+.page-content {
+  padding: 30px;
+}
+
+.card {
+  background: #050805;
+  border: 1px solid #0f2a17;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+button {
+  background: #00ff88;
+  color: #001a0d;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+button:disabled {
+  opacity: 0.5;
+}
+
+select {
+  background: #0b0f0c;
+  color: #e6ffe6;
+  border: 1px solid #0f2a17;
+  padding: 8px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+hr {
+  border-color: #0f2a17;
+}
+body {
+  margin: 0;
+  background-color: #0b0f0c; /* Asegura el fondo oscuro en toda la web */
+}
+
+/* Elimina cualquier layout de columnas previo */
+.app-container {
+  display: block;
+}

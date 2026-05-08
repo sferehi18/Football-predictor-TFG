@@ -1,0 +1,117 @@
+Fecha,Equipo_L,Equipo_V,manager_name_L,manager_name_V,formation_L,formation_V,hora
+2026-01-04,Alaves,Real Oviedo,eduardo coudet,guillermo almada,4-1-4-1,4-2-3-1,17:30:00
+2026-01-25,Alaves,Real Betis,eduardo coudet,manuel pellegrini,4-4-2,4-2-3-1,20:00:00
+2026-02-08,Alaves,Getafe,eduardo coudet,josé bordalás,4-4-2,5-3-2,13:00:00
+2026-02-23,Alaves,Girona,eduardo coudet,míchel,4-4-2,4-2-3-1,20:00:00
+2026-03-13,Alaves,Villarreal,quique sánchez flores,marcelino,5-3-2,4-4-2,20:00:00
+2026-02-01,Athletic Club,Real Sociedad,ernesto valverde,pellegrino matarazzo,4-2-3-1,4-2-3-1,20:00:00
+2026-02-08,Athletic Club,Levante,ernesto valverde,luís castro,4-4-2,4-2-3-1,15:15:00
+2026-02-20,Athletic Club,Elche,ernesto valverde,eder sarabia,4-2-3-1,3-1-4-2,20:00:00
+2026-03-07,Athletic Club,Barcelona,ernesto valverde,hansi flick,4-2-3-1,4-2-3-1,20:00:00
+2026-01-18,Atletico Madrid,Alaves,diego simeone,eduardo coudet,4-4-2,4-1-4-1,15:15:00
+2026-01-25,Atletico Madrid,Mallorca,diego simeone,jagoba arrasate,4-4-2,4-4-2,13:00:00
+2026-02-08,Atletico Madrid,Real Betis,diego simeone,manuel pellegrini,4-4-2,4-3-3 ATTACKING,17:30:00
+2026-02-21,Atletico Madrid,Espanyol,diego simeone,manolo gonzález,4-4-2,5-4-1,20:00:00
+2026-03-07,Atletico Madrid,Real Sociedad,diego simeone,pellegrino matarazzo,4-4-2,4-2-3-1,17:30:00
+2026-03-14,Atletico Madrid,Getafe,diego simeone,josé bordalás,3-5-2 FLAT,5-3-2,15:15:00
+2026-01-25,Barcelona,Real Oviedo,hansi flick,guillermo almada,4-2-3-1,4-2-3-1,15:15:00
+2026-02-07,Barcelona,Mallorca,hansi flick,jagoba arrasate,4-3-3 ATTACKING,4-2-3-1,15:15:00
+2026-02-22,Barcelona,Levante,hansi flick,luís castro,4-2-3-1,4-1-4-1,15:15:00
+2026-02-28,Barcelona,Villarreal,hansi flick,marcelino,4-3-3 ATTACKING,4-4-2,15:15:00
+2026-03-15,Barcelona,Sevilla,hansi flick,matías almeyda,4-2-3-1,4-2-3-1,15:15:00
+2026-03-22,Barcelona,Rayo Vallecano,hansi flick,iñigo pérez,4-2-3-1,4-2-3-1,13:00:00
+2026-01-03,Celta Vigo,Valencia,claudio giráldez,carlos corberán,5-4-1,5-3-2,13:00:00
+2026-01-18,Celta Vigo,Rayo Vallecano,claudio giráldez,iñigo pérez,5-4-1,4-2-3-1,17:30:00
+2026-02-06,Celta Vigo,Osasuna,claudio giráldez,alessio lisci,5-4-1,4-3-3 ATTACKING,20:00:00
+2026-02-22,Celta Vigo,Mallorca,claudio giráldez,jagoba arrasate,5-4-1,4-2-3-1,17:30:00
+2026-03-06,Celta Vigo,Real Madrid,claudio giráldez,álvaro arbeloa,3-4-3,4-4-2,20:00:00
+2026-03-22,Celta Vigo,Alaves,claudio giráldez,quique sánchez flores,5-4-1,4-4-2,15:15:00
+2026-01-03,Elche,Villarreal,eder sarabia,marcelino,3-5-2 FLAT,4-4-2,17:30:00
+2026-01-19,Elche,Sevilla,eder sarabia,matías almeyda,3-4-2-1,5-3-2,20:00:00
+2026-01-31,Elche,Barcelona,eder sarabia,hansi flick,3-4-1-2,4-3-3 ATTACKING,20:00:00
+2026-02-13,Elche,Osasuna,eder sarabia,alessio lisci,3-5-2 FLAT,4-2-3-1,20:00:00
+2026-03-01,Elche,Espanyol,eder sarabia,manolo gonzález,3-5-2 FLAT,4-2-3-1,13:00:00
+2026-03-21,Elche,Mallorca,eder sarabia,martín demichelis,3-5-2 FLAT,4-2-3-1,13:00:00
+2026-01-03,Espanyol,Barcelona,manolo gonzález,hansi flick,4-2-3-1,4-2-3-1,20:00:00
+2026-01-16,Espanyol,Girona,manolo gonzález,míchel,4-2-3-1,4-2-3-1,20:00:00
+2026-01-30,Espanyol,Alaves,manolo gonzález,eduardo coudet,4-4-2,4-4-2,20:00:00
+2026-02-14,Espanyol,Celta Vigo,manolo gonzález,claudio giráldez,4-2-3-1,5-4-1,13:00:00
+2026-03-09,Espanyol,Real Oviedo,manolo gonzález,guillermo almada,4-2-3-1,4-2-3-1,20:00:00
+2026-03-21,Espanyol,Getafe,manolo gonzález,josé bordalás,4-4-1-1,5-4-1,15:15:00
+2026-01-09,Getafe,Real Sociedad,josé bordalás,pellegrino matarazzo,4-5-1,4-2-3-1,20:00:00
+2026-01-18,Getafe,Valencia,josé bordalás,carlos corberán,4-2-3-1,4-4-2,13:00:00
+2026-02-01,Getafe,Celta Vigo,josé bordalás,claudio giráldez,5-3-2,5-4-1,17:30:00
+2026-02-14,Getafe,Villarreal,josé bordalás,marcelino,5-3-2,4-4-2,15:15:00
+2026-02-22,Getafe,Sevilla,josé bordalás,matías almeyda,5-3-2,5-3-2,13:00:00
+2026-03-08,Getafe,Real Betis,josé bordalás,manuel pellegrini,5-4-1,4-3-3 ATTACKING,15:15:00
+2026-01-10,Girona,Osasuna,míchel,alessio lisci,4-2-3-1,4-2-3-1,17:30:00
+2026-01-26,Girona,Getafe,míchel,josé bordalás,4-2-3-1,5-3-2,20:00:00
+2026-02-16,Girona,Barcelona,míchel,hansi flick,4-2-3-1,4-3-3 ATTACKING,20:00:00
+2026-03-01,Girona,Celta Vigo,míchel,claudio giráldez,4-2-3-1,5-4-1,20:00:00
+2026-03-14,Girona,Athletic Club,míchel,ernesto valverde,4-2-3-1,4-2-3-1,13:00:00
+2026-01-11,Levante,Espanyol,luís castro,manolo gonzález,4-2-3-1,4-4-2,15:15:00
+2026-01-23,Levante,Elche,luís castro,eder sarabia,4-2-3-1,4-3-3 ATTACKING,20:00:00
+2026-01-31,Levante,Atletico Madrid,luís castro,diego simeone,4-2-3-1,4-4-2,17:30:00
+2026-02-15,Levante,Valencia,luís castro,carlos corberán,4-2-3-1,4-4-2,17:30:00
+2026-02-18,Levante,Villarreal,luís castro,marcelino,4-2-3-1,4-4-2,19:00:00
+2026-02-27,Levante,Alaves,luís castro,eduardo coudet,4-1-4-1,4-4-2 DOUBLE 6,20:00:00
+2026-03-07,Levante,Girona,luís castro,míchel,4-4-2,4-2-3-1,15:15:00
+2026-01-04,Mallorca,Girona,jagoba arrasate,míchel,4-2-3-1,4-1-4-1,17:30:00
+2026-01-17,Mallorca,Athletic Club,jagoba arrasate,ernesto valverde,4-4-2,4-2-3-1,15:15:00
+2026-02-02,Mallorca,Sevilla,jagoba arrasate,matías almeyda,4-2-3-1,5-3-2,20:00:00
+2026-02-15,Mallorca,Real Betis,jagoba arrasate,manuel pellegrini,4-2-3-1,4-3-3 ATTACKING,20:00:00
+2026-02-28,Mallorca,Real Sociedad,gustavo siviero,pellegrino matarazzo,4-3-3 ATTACKING,4-3-3 ATTACKING,17:30:00
+2026-03-15,Mallorca,Espanyol,martín demichelis,manolo gonzález,4-3-1-2,4-2-3-1,13:00:00
+2026-01-03,Osasuna,Athletic Club,alessio lisci,ernesto valverde,4-2-3-1,4-2-3-1,15:15:00
+2026-01-17,Osasuna,Real Oviedo,alessio lisci,guillermo almada,4-3-3 ATTACKING,4-2-3-1,17:30:00
+2026-01-31,Osasuna,Villarreal,alessio lisci,marcelino,4-2-3-1,4-4-2,15:15:00
+2026-02-21,Osasuna,Real Madrid,alessio lisci,álvaro arbeloa,4-2-3-1,4-4-2 DOUBLE 6,17:30:00
+2026-03-07,Osasuna,Mallorca,alessio lisci,martín demichelis,4-2-3-1,4-3-1-2,13:00:00
+2026-03-21,Osasuna,Girona,alessio lisci,míchel,4-2-3-1,4-2-3-1,17:30:00
+2026-01-02,Rayo Vallecano,Getafe,iñigo pérez,josé bordalás,4-2-3-1,4-2-3-1,20:00:00
+2026-01-11,Rayo Vallecano,Mallorca,iñigo pérez,jagoba arrasate,4-2-3-1,4-4-2,13:00:00
+2026-01-24,Rayo Vallecano,Osasuna,iñigo pérez,alessio lisci,4-2-3-1,4-2-3-1,13:00:00
+2026-02-15,Rayo Vallecano,Atletico Madrid,iñigo pérez,diego simeone,4-1-4-1,4-1-4-1,15:15:00
+2026-02-28,Rayo Vallecano,Athletic Club,iñigo pérez,ernesto valverde,4-2-3-1,4-2-3-1,13:00:00
+2026-03-04,Rayo Vallecano,Real Oviedo,iñigo pérez,guillermo almada,4-2-3-1,4-2-3-1,18:00:00
+2026-03-16,Rayo Vallecano,Levante,iñigo pérez,luís castro,4-3-3 ATTACKING,4-3-3 ATTACKING,20:00:00
+2026-01-17,Real Betis,Villarreal,manuel pellegrini,marcelino,4-2-3-1,4-4-2,20:00:00
+2026-02-01,Real Betis,Valencia,manuel pellegrini,carlos corberán,4-2-3-1,4-4-2,15:15:00
+2026-02-21,Real Betis,Rayo Vallecano,manuel pellegrini,iñigo pérez,4-3-3 ATTACKING,4-2-3-1,15:15:00
+2026-03-01,Real Betis,Sevilla,manuel pellegrini,matías almeyda,4-3-3 ATTACKING,3-4-2-1,17:30:00
+2026-03-15,Real Betis,Celta Vigo,manuel pellegrini,claudio giráldez,4-2-3-1,5-4-1,17:30:00
+2026-01-04,Real Madrid,Real Betis,xabi alonso,manuel pellegrini,4-4-2,4-2-3-1,15:15:00
+2026-01-17,Real Madrid,Levante,álvaro arbeloa,luís castro,4-3-3 ATTACKING,4-2-3-1,13:00:00
+2026-02-01,Real Madrid,Rayo Vallecano,álvaro arbeloa,iñigo pérez,4-4-2,4-2-3-1,13:00:00
+2026-02-14,Real Madrid,Real Sociedad,álvaro arbeloa,pellegrino matarazzo,4-4-2 DOUBLE 6,4-2-3-1,20:00:00
+2026-03-02,Real Madrid,Getafe,álvaro arbeloa,josé bordalás,4-2-3-1,5-4-1,20:00:00
+2026-03-14,Real Madrid,Elche,álvaro arbeloa,eder sarabia,4-4-2,5-3-2,20:00:00
+2026-03-22,Real Madrid,Atletico Madrid,álvaro arbeloa,diego simeone,4-4-2,4-4-2,20:00:00
+2026-01-10,Real Oviedo,Real Betis,guillermo almada,manuel pellegrini,4-2-3-1,4-3-3 ATTACKING,13:00:00
+2026-01-31,Real Oviedo,Girona,guillermo almada,míchel,4-2-3-1,4-3-3 ATTACKING,13:00:00
+2026-02-15,Real Oviedo,Athletic Club,guillermo almada,ernesto valverde,4-2-3-1,4-2-3-1,13:00:00
+2026-02-28,Real Oviedo,Atletico Madrid,guillermo almada,diego simeone,4-2-3-1,4-4-2,20:00:00
+2026-03-14,Real Oviedo,Valencia,guillermo almada,carlos corberán,4-2-3-1,4-2-3-1,17:30:00
+2026-01-04,Real Sociedad,Atletico Madrid,pellegrino matarazzo,diego simeone,4-2-3-1,4-4-2,20:00:00
+2026-01-18,Real Sociedad,Barcelona,pellegrino matarazzo,hansi flick,4-2-3-1,4-3-3 ATTACKING,20:00:00
+2026-01-25,Real Sociedad,Celta Vigo,pellegrino matarazzo,claudio giráldez,4-2-3-1,5-4-1,17:30:00
+2026-02-07,Real Sociedad,Elche,pellegrino matarazzo,eder sarabia,4-2-3-1,3-1-4-2,20:00:00
+2026-02-21,Real Sociedad,Real Oviedo,pellegrino matarazzo,guillermo almada,4-2-3-1,4-2-3-1,13:00:00
+2026-03-15,Real Sociedad,Osasuna,pellegrino matarazzo,alessio lisci,4-1-4-1,4-2-3-1,20:00:00
+2026-01-04,Sevilla,Levante,matías almeyda,luís castro,5-3-2,4-2-3-1,13:00:00
+2026-01-12,Sevilla,Celta Vigo,matías almeyda,claudio giráldez,5-3-2,4-4-2,20:00:00
+2026-01-24,Sevilla,Athletic Club,matías almeyda,ernesto valverde,5-3-2,4-2-3-1,17:30:00
+2026-02-08,Sevilla,Girona,matías almeyda,míchel,5-3-2,4-2-3-1,15:15:00
+2026-02-14,Sevilla,Alaves,matías almeyda,eduardo coudet,5-3-2,4-4-2,17:30:00
+2026-03-08,Sevilla,Rayo Vallecano,matías almeyda,iñigo pérez,4-4-2 DOUBLE 6,4-2-3-1,17:30:00
+2026-01-10,Valencia,Elche,carlos corberán,eder sarabia,4-2-3-1,4-1-4-1,20:00:00
+2026-01-24,Valencia,Espanyol,carlos corberán,manolo gonzález,4-4-2,4-4-2,15:15:00
+2026-02-08,Valencia,Real Madrid,carlos corberán,álvaro arbeloa,4-4-2,4-4-2 DOUBLE 6,20:00:00
+2026-03-01,Valencia,Osasuna,carlos corberán,alessio lisci,4-2-3-1,4-2-3-1,15:15:00
+2026-03-08,Valencia,Alaves,carlos corberán,quique sánchez flores,4-3-3 ATTACKING,4-4-2 DOUBLE 6,20:00:00
+2026-01-10,Villarreal,Alaves,marcelino,eduardo coudet,4-4-2,4-2-3-1,15:15:00
+2026-01-24,Villarreal,Real Madrid,marcelino,álvaro arbeloa,4-4-2,4-3-3 ATTACKING,20:00:00
+2026-02-09,Villarreal,Espanyol,marcelino,manolo gonzález,4-4-2,4-2-3-1,20:00:00
+2026-02-22,Villarreal,Valencia,marcelino,carlos corberán,4-4-2,3-4-2-1,20:00:00
+2026-03-08,Villarreal,Elche,marcelino,eder sarabia,4-4-2,3-5-2 FLAT,13:00:00
+2026-03-20,Villarreal,Real Sociedad,marcelino,pellegrino matarazzo,4-4-2,4-2-3-1,20:00:00
