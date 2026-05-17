@@ -1,15 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from loaders import (
-    model,
-    df_demo,
-    metadata
+from app.loaders import df_demo
+
+from app.services.predict import predict_match
+
+app = FastAPI(
+    title="Football Prediction API"
 )
-
-import numpy as np
-
-app = FastAPI(title="Football Prediction API")
 
 # =========================
 # CORS
@@ -24,27 +22,19 @@ app.add_middleware(
 )
 
 # =========================
-# PREPARE INPUTS
+# HEALTHCHECK
 # =========================
 
-def prepare_model_inputs(df, num_cols):
+@app.get("/")
+def root():
 
-    return [
-        df['home_team_enc'].values,
-        df['away_team_enc'].values,
-
-        df['home_manager_enc'].values,
-        df['away_manager_enc'].values,
-
-        df['home_formation_enc'].values,
-        df['away_formation_enc'].values,
-
-        df[num_cols].values.astype("float32")
-    ]
-
+    return {
+        "status": "ok",
+        "service": "football-api"
+    }
 
 # =========================
-# GET ALL GAMES
+# GET GAMES
 # =========================
 
 @app.get("/games")
@@ -65,9 +55,8 @@ def get_games():
 
     return games.to_dict(orient="records")
 
-
 # =========================
-# PREDICT TEST GAME
+# PREDICT GAME
 # =========================
 
 @app.post("/predict-test/{game_id}")
@@ -84,47 +73,24 @@ def predict_test_game(game_id: int):
             detail="Partido no encontrado"
         )
 
-    # preparar entradas keras
-    inputs = prepare_model_inputs(
-        match,
-        metadata["num_cols"]
-    )
-
-    # predicción
-    probs = model.predict(
-        inputs,
-        verbose=0
-    )[0]
-
-    # simulación montecarlo
-    n_sims = 10000
-
-    results = np.random.choice(
-        ['A', 'D', 'H'],
-        size=n_sims,
-        p=probs
-    )
+    prediction = predict_match(match)
 
     return {
 
         "game_id": int(match.iloc[0]["game_id"]),
 
         "home_team": match.iloc[0]["home_team"],
+
         "away_team": match.iloc[0]["away_team"],
 
         "probabilities": {
 
-            "away_win": float(probs[0]),
-            "draw": float(probs[1]),
-            "home_win": float(probs[2])
+            "away_win": prediction["away_win"],
+            "draw": prediction["draw"],
+            "home_win": prediction["home_win"]
         },
 
-        "montecarlo": {
-
-            "A": int(np.sum(results == "A")),
-            "D": int(np.sum(results == "D")),
-            "H": int(np.sum(results == "H"))
-        },
+        "montecarlo": prediction["montecarlo"],
 
         "real_result": match.iloc[0]["FTR"]
     }

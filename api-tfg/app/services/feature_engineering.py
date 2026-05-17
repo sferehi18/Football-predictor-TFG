@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from loaders import (
+from app.loaders import (
     df_team_state,
     scaler,
     encoders,

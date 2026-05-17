@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from loaders import (
+from app.loaders import (
     modelo,
     scaler,
     encoders,

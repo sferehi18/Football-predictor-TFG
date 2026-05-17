@@ -28,9 +28,9 @@ function Simulador() {
   // =========================
   // LOAD GAMES
   // =========================
-
+const API_URL = import.meta.env.VITE_API_URL
   useEffect(() => {
-    fetch("http://localhost:8000/games")
+    fetch(`${API_URL}/games`)
       .then((res) => res.json())
       .then((data) => setPartidos(data))
       .catch((err) => console.error(err));
@@ -51,7 +51,7 @@ function Simulador() {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/predict-test/${partido.game_id}`,
+        `${API_URL}/predict-test/${partido.game_id}`,
 
         {
           method: "POST",
