@@ -5,8 +5,13 @@ from dotenv import load_dotenv
 # =========================
 # ENVIRONMENT
 # =========================
+ENV = os.getenv("ENV")
 
-ENV = os.getenv("ENV", "local")
+# =========================
+# BASE DIRECTORY
+# =========================
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # =========================
 # LOAD ENV FILE
@@ -14,11 +19,11 @@ ENV = os.getenv("ENV", "local")
 
 if ENV == "production":
 
-    load_dotenv(".env.production")
+    load_dotenv(os.path.join(BASE_DIR, "..", ".env"))
 
 else:
 
-    load_dotenv(".env.local")
+    load_dotenv(os.path.join(BASE_DIR, "..", ".env"))
 
 # =========================
 # MODEL PATHS

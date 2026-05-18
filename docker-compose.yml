@@ -1,40 +1,19 @@
-version: '3.8'
-
 services:
-
   backend:
-
-    build: ./api-tfg
-
+    image: sferehi18/football-api:latest
     container_name: football-api
-
     ports:
       - "8000:8000"
-
     env_file:
-      - ./api-tfg/.env
-
-    volumes:
-      - ./api-tfg/app/data:/app/app/data
-      - ./api-tfg/app/models:/app/app/models
-
+      - .env
     restart: always
 
-
   frontend:
-
-    build: ./frontend-tfg
-
+    image: sferehi18/football-web:latest
     container_name: football-web
-
     ports:
       - "80:80"
-
-    env_file:
-      - ./frontend-tfg/.env
-
     depends_on:
       - backend
-
     restart: always
 
