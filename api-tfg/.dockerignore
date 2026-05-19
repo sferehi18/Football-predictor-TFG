@@ -18,3 +18,6 @@ colab
 notebooks
 
 tests
+*.csv 
+*.pkl 
+*.keras

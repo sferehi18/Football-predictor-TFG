@@ -28,7 +28,7 @@ function Simulador() {
   // =========================
   // LOAD GAMES
   // =========================
-const API_URL = "http://3.91.35.205:8000";
+const API_URL = window.__ENV__.VITE_API_URL;
   useEffect(() => {
     fetch(`${API_URL}/games`)
       .then((res) => res.json())

@@ -1,3 +1,4 @@
+
 import os
 
 from dotenv import load_dotenv
@@ -5,7 +6,8 @@ from dotenv import load_dotenv
 # =========================
 # ENVIRONMENT
 # =========================
-ENV = os.getenv("ENV")
+
+ENV = os.getenv("ENV", "local")
 
 # =========================
 # BASE DIRECTORY
@@ -17,13 +19,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # LOAD ENV FILE
 # =========================
 
-if ENV == "production":
-
-    load_dotenv(os.path.join(BASE_DIR, "..", ".env"))
-
-else:
-
-    load_dotenv(os.path.join(BASE_DIR, "..", ".env"))
+load_dotenv(
+    os.path.join(BASE_DIR, "..", ".env")
+)
 
 # =========================
 # MODEL PATHS
@@ -48,3 +46,13 @@ TEAM_STATE_PATH = os.getenv("TEAM_STATE_PATH")
 ENGINEERING_PATH = os.getenv("ENGINEERING_PATH")
 
 DEMO_PATH = os.getenv("DEMO_PATH")
+
+# =========================
+# AWS S3
+# =========================
+
+S3_DATA_BUCKET = os.getenv("S3_DATA_BUCKET")
+
+S3_MODELS_BUCKET = os.getenv("S3_MODELS_BUCKET")
+
+AWS_REGION = os.getenv("AWS_REGION")

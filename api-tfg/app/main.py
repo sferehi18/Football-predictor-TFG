@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.services.logger import save_prediction_event
 from app.loaders import df_demo
 
 from app.services.predict import predict_match
@@ -74,7 +74,12 @@ def predict_test_game(game_id: int):
         )
 
     prediction = predict_match(match)
-
+    save_prediction_event(
+    game_id=int(match.iloc[0]["game_id"]),
+    home_team=match.iloc[0]["home_team"],
+    away_team=match.iloc[0]["away_team"],
+    prediction=prediction
+)
     return {
 
         "game_id": int(match.iloc[0]["game_id"]),

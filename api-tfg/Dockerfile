@@ -2,8 +2,8 @@
 FROM python:3.12-slim
 
 # Configuraciones para que Python no genere basura y los logs salgan limpios
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Carpeta de trabajo dentro del contenedor
 WORKDIR /app
