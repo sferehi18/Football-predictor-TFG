@@ -11,7 +11,8 @@ from .config import (
     MATCHES_PATH,
     TEAM_STATE_PATH,
     ENGINEERING_PATH,
-    DEMO_PATH
+    DEMO_PATH,
+    COV_MATRIX_PATH
 )
 
 # =========================
@@ -47,6 +48,8 @@ df_team_state = pd.read_csv(TEAM_STATE_PATH)
 df_engineering = pd.read_csv(ENGINEERING_PATH)
 
 df_demo = pd.read_csv(DEMO_PATH)
+
+df_cov_matrix = pd.read_csv(COV_MATRIX_PATH,index_col=0)
 
 # =========================
 # DATE PARSING

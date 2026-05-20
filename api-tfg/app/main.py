@@ -4,7 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.loaders import df_demo
 
 from app.services.predict import predict_match
-
+from app.services.feature_engineering import build_match_features
+from app.predict_schema import MatchPredictionRequest
+from app.loaders import (
+    df_team_state
+)
 app = FastAPI(
     title="Football Prediction API"
 )
@@ -32,6 +36,35 @@ def root():
         "status": "ok",
         "service": "football-api"
     }
+
+
+@app.get("/metadata")
+def get_metadata():
+
+    return {
+
+        "teams": sorted(
+            df_team_state["team"]
+            .dropna()
+            .unique()
+            .tolist()
+        ),
+
+        "formations": sorted(
+            df_team_state["formation"]
+            .dropna()
+            .unique()
+            .tolist()
+        ),
+
+        "managers": sorted(
+            df_team_state["manager"]
+            .dropna()
+            .unique()
+            .tolist()
+        )
+    }
+
 
 # =========================
 # GET GAMES
@@ -61,36 +94,36 @@ def get_games():
 
 @app.post("/predict-test/{game_id}")
 def predict_test_game(game_id: int):
-
-    match = df_demo[
-        df_demo["game_id"] == game_id
-    ]
+    match = df_demo[df_demo["game_id"] == game_id]
 
     if match.empty:
-
         raise HTTPException(
             status_code=404,
             detail="Partido no encontrado"
         )
 
+    # Suponiendo que predict_match llama internamente a run_montecarlo_simulation
     prediction = predict_match(match)
 
     return {
-
         "game_id": int(match.iloc[0]["game_id"]),
-
-        "home_team": match.iloc[0]["home_team"],
-
-        "away_team": match.iloc[0]["away_team"],
-
+        "home_team": str(match.iloc[0]["home_team"]),
+        "away_team": str(match.iloc[0]["away_team"]),
         "probabilities": {
-
             "away_win": prediction["away_win"],
             "draw": prediction["draw"],
             "home_win": prediction["home_win"]
         },
-
         "montecarlo": prediction["montecarlo"],
-
-        "real_result": match.iloc[0]["FTR"]
+        "stats": prediction.get("stats", {}), # Inyección opcional libre de NumPy
+        "real_result": str(match.iloc[0]["FTR"])
     }
+
+@app.post("/predict-custom")
+def predict_custom(request: MatchPredictionRequest):
+
+    df_features = build_match_features(request)
+    
+    prediction = predict_match(df_features)
+
+    return prediction

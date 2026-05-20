@@ -45,6 +45,10 @@ export default function Header({ stats = { hits: 0, total: 0 } }) {
           <NavLink to="/" end style={({ isActive }) => isActive ? { ...navStyle, ...activeStyle } : navStyle}>
             Simulador
           </NavLink>
+
+          <NavLink to="/custom-predictor" style={({ isActive }) => isActive ? { ...navStyle, ...activeStyle } : navStyle}>
+            Custom Predictor
+          </NavLink>
         </nav>
       </div>
 

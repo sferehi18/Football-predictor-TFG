@@ -85,13 +85,3 @@ tensorflow-cpu==2.20.0
 ## Instrucciones de Uso
 
 El flujo de trabajo está optimizado para su ejecución en cuadernos jupyter.
-
-### Ejecución en Google Colab (Recomendado)
-
-1. Acceda a [Google Colab](https://colab.research.google.com/).
-2. Suba los tres archivos `.ipynb` proporcionados en el repositorio.
-3. Asegúrese de cargar los datasets originales en la carpeta de entorno virtual o monte su unidad de Google Drive.
-4. Ejecute los notebooks secuencialmente de arriba a abajo en el siguiente orden:
-* `Matchstats_preprocessing.ipynb`
-* `Context_preprocessing.ipynb`
-* `Model_training.ipynb`
