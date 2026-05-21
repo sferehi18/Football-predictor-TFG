@@ -47,7 +47,12 @@ def get_games():
             "away_team",
             "date",
             "Time",
-            "FTR"
+            "FTR",
+            "home_formation",
+            "away_formation",
+            "away_manager",
+            "home_manager"
+            
         ]
     ].copy()
 

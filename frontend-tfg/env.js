@@ -1,3 +1,3 @@
 window.__ENV__ = {
-  VITE_API_URL: "http://98.81.161.163:8000"
+  VITE_API_URL: "http://98.81.77.215:8000"
 };

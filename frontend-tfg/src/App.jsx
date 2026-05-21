@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Simulador from './pages/Simulador';
+import Matches from './pages/Matches';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Simulador />} />
+          <Route index element={<Matches />} />
         </Route>
       </Routes>
     </BrowserRouter>

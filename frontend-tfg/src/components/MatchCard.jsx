@@ -4,11 +4,11 @@ export default function MatchCard({ partido, isSelected, isLoading, onPredict })
   const homeTeam = partido.home_team || partido.Equipo_L;
   const awayTeam = partido.away_team || partido.Equipo_V;
 
-  const managerHome = partido.manager_name_L || partido.home_manager || "";
-  const managerAway = partido.manager_name_V || partido.away_manager || "";
+  const managerHome =  partido.home_manager || "";
+  const managerAway =  partido.away_manager || "";
 
-  const formationHome = partido.formation_L || partido.home_formation || "";
-  const formationAway = partido.formation_V || partido.away_formation || "";
+  const formationHome =  partido.home_formation || "";
+  const formationAway =  partido.away_formation || "";
 
   const matchDate = partido.date || partido.Fecha || partido.Date || "";
 

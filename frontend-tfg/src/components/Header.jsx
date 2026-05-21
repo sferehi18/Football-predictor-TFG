@@ -38,12 +38,12 @@ export default function Header({ stats = { hits: 0, total: 0 } }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '50px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#00ff88', boxShadow: '0 0 8px #00ff88' }}></div>
-          <span style={{ color: '#fff', fontWeight: 'bold', letterSpacing: '2px' }}>IA FOOTBALL LAB</span>
+          <span style={{ color: '#fff', fontWeight: 'bold', letterSpacing: '2px' }}> DeepStats</span>
         </div>
 
         <nav style={{ display: 'flex', gap: '10px' }}>
           <NavLink to="/" end style={({ isActive }) => isActive ? { ...navStyle, ...activeStyle } : navStyle}>
-            Simulador
+            Partidos disponibles
           </NavLink>
         </nav>
       </div>
