@@ -14,7 +14,7 @@ venv
 .gitignore
 
 colab
-
+docs
 notebooks
 
 tests

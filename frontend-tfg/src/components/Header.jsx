@@ -47,18 +47,6 @@ export default function Header({ stats = { hits: 0, total: 0 } }) {
           </NavLink>
         </nav>
       </div>
-
-      {/* MÉTRICAS DE SESIÓN */}
-      <div style={{ display: 'flex', gap: '30px', alignItems: 'center', borderLeft: '1px solid #222', paddingLeft: '30px' }}>
-        <div style={{ textAlign: 'right' }}>
-          <span style={{ color: '#444', fontSize: '0.6rem', display: 'block', textTransform: 'uppercase' }}>Precision</span>
-          <span style={{ color: '#00ff88', fontSize: '0.9rem', fontWeight: 'bold' }}>{precision}%</span>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <span style={{ color: '#444', fontSize: '0.6rem', display: 'block' }}>HITS</span>
-          <span style={{ color: '#fff', fontSize: '0.9rem' }}>{stats.hits}/{stats.total}</span>
-        </div>
-      </div>
     </header>
   );
 }
