@@ -15,6 +15,7 @@ venv
 
 colab
 docs
+n8n
 notebooks
 
 tests

@@ -1,0 +1,413 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        208
+      ],
+      "id": "2349573d-7db1-40a2-9626-69a0b35de024",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://www.football-data.co.uk/spainm.php",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122 Safari/537.36\",\n  \"Accept\": \"text/html,application/xhtml+xml\",\n  \"Accept-Language\": \"en-US,en;q=0.9\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        240,
+        0
+      ],
+      "id": "0c40fe21-7b5a-463a-8670-b25fe02a2ea5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "enlaces",
+              "cssSelector": "a",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "3e3d1c19-c962-4d3c-b71d-110dc44dcd4e",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "jsCode": "const enlaces = $input.first().json.enlaces || [];\n\nreturn enlaces\n  .filter(l => {\n    if (!l.includes(\"SP1.csv\")) return false;\n\n    const match = l.match(/\\/(\\d{4})\\/SP1\\.csv$/);\n    if (!match) return false;\n\n    // ❌ excluir temporadas que empiezan por 9 (90s)\n    if (match[1].startsWith(\"9\")) return false;\n\n    const season = parseInt(match[1], 10);\n\n    return season >= 1920;\n  })\n  .map(l => ({\n    json: {\n      url: \"https://www.football-data.co.uk/\" + l\n    }\n  }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        0
+      ],
+      "id": "4d7ce398-b599-4b99-8a6d-f0a6b9d452de",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122 Safari/537.36\",\n  \"Accept\": \"text/html,application/xhtml+xml\",\n  \"Accept-Language\": \"en-US,en;q=0.9\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        864,
+        0
+      ],
+      "id": "af36b615-d53d-4be3-bbf7-c20b3871e5c1",
+      "name": "HTTP Request1",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "football-tfg-data",
+        "fileName": "data/raw/football_co_data.csv",
+        "additionalFields": {},
+        "tagsUi": {
+          "tagsValues": []
+        }
+      },
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [
+        1264,
+        0
+      ],
+      "id": "b59d7295-a588-4f4d-b7df-980d8388c04c",
+      "name": "Upload a file",
+      "credentials": {
+        "aws": {
+          "id": "bxYYXMk9vAX48oYO",
+          "name": "AWS (IAM) account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = [];\nlet header = null;\n\nfor (const item of $input.all()) {\n  const csv = item.json.body || item.json.data;\n  if (!csv) continue;\n\n  const lines = csv.split(\"\\n\").filter(l => l.trim() !== \"\");\n\n  if (!header) {\n    header = lines[0];\n  }\n\n  rows.push(...lines.slice(1));\n}\n\nconst columns = header.split(\",\");\n\nconst dateIndex = columns.indexOf(\"Date\");\nconst timeIndex = columns.indexOf(\"Time\");\n\nfunction parseDate(line) {\n  const cols = line.split(\",\");\n\n  const [day, month, year] = cols[dateIndex].split(\"/\");\n  const time = cols[timeIndex] || \"00:00\";\n\n  return new Date(`${year}-${month}-${day}T${time}:00`).getTime();\n}\n\nrows.sort((a, b) => parseDate(a) - parseDate(b));\n\nconst finalCsv = [header, ...rows].join(\"\\n\");\n\nreturn [\n  {\n    binary: {\n      data: {\n        data: Buffer.from(finalCsv).toString(\"base64\"),\n        mimeType: \"text/csv\",\n        fileName: \"merged_sorted.csv\"\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        0
+      ],
+      "id": "4827b497-7bf7-4900-9de4-6bcaf93ac390",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "url": "https://www.kaggle.com/datasets/davidcariboo/player-scores",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0b171bae-8270-4b2d-9ecb-007058c6a767",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "url": "https://www.kaggle.com/api/v1/datasets/download/davidcariboo/player-scores",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        0,
+        432
+      ],
+      "id": "fbef7e9e-e970-4fc7-8715-ea7ac0037a71",
+      "name": "HTTP Request4",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "lAahgLhpThcpR5ta",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        432
+      ],
+      "id": "1ead316b-c07c-480b-a76f-825afa3fcf6b",
+      "name": "Compression"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1_SIX075-a_ZS5VRguwdZGItv6OxesNbV",
+          "mode": "list",
+          "cachedResultName": "data_understat.csv",
+          "cachedResultUrl": "https://drive.google.com/file/d/1_SIX075-a_ZS5VRguwdZGItv6OxesNbV/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        208
+      ],
+      "id": "2aaef4ac-60a5-41bb-9d18-2c906fd16f26",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "axsZNALwKzhrIuif",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "football-tfg-data",
+        "fileName": "=data/raw/{{$binary.data.fileName}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [
+        240,
+        208
+      ],
+      "id": "907b188c-8500-49e5-ae2c-88d69c4bf434",
+      "name": "Upload a file2",
+      "credentials": {
+        "aws": {
+          "id": "bxYYXMk9vAX48oYO",
+          "name": "AWS (IAM) account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const binaries = $input.first().binary;\n\nconst nombresPermitidos = [\n  \"clubs.csv\",\n  \"game_lineups.csv\",\n  \"players.csv\",\n  \"player_valuations.csv\",\n  \"games.csv\",\n  \"appearances.csv\"\n];\n\nconst output = [];\n\nfor (const key of Object.keys(binaries)) {\n  const file = binaries[key];\n\n  // comprobar nombre exacto\n  if (nombresPermitidos.includes(file.fileName)) {\n    output.push({\n      binary: {\n        data: file\n      }\n    });\n  }\n}\n\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        432
+      ],
+      "id": "4bb08866-02f1-4fbb-b269-e5d5fdcbee52",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "football-tfg-data",
+        "fileName": "=data/raw/{{$binary.data.fileName}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [
+        656,
+        432
+      ],
+      "id": "2a0fcbe7-963c-4260-a5b7-9aaff47e2b31",
+      "name": "Upload a file3",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "aws": {
+          "id": "bxYYXMk9vAX48oYO",
+          "name": "AWS (IAM) account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Upload a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Compression",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compression": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Upload a file2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Upload a file3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "81b5d092-48ad-4389-868a-77a62531bbde",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e998d7ecd423c060679acb5ab48daf9af72d55e5770174c0f369a113c052815c"
+  },
+  "id": "YOVbOIaV7muwb3qr",
+  "tags": []
+}
